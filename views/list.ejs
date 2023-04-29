@@ -1,0 +1,28 @@
+<%- include("header") -%>
+
+  <div class="box" id="heading">
+    <h1> <%= listTitle %> </h1>
+  </div>
+
+  <div class="box">
+    <% newListItems.forEach((item)=>{ %>
+      <form action="/delete" method="post">
+        <!-- only work for delete route, not home route -->
+        <div class="item">
+          <!-- post when clicked checkbox. work with its id -->
+          <input type="checkbox" name="checkbox" value="<%=item._id %>" onChange="this.form.submit()">
+          <p><%=  item.name  %></p>
+        </div>
+        <!-- hidden input, to store the title of the list -->
+        <input type="hidden" name="listName" value="<%= listTitle %>">
+      </form>
+      <% }) %>
+
+      <!-- all post requests(adding new item) is redirected to home route -->
+      <form class="item" action="/" method="post">
+        <input type="text" name="newItem" placeholder="New Item" autocomplete="off">
+        <button type="submit" name="list" value="<%= listTitle %>">+</button>
+      </form>
+  </div>
+
+<%- include("footer") -%>
