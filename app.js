@@ -53,9 +53,7 @@ app.get("/", function(req, res) {
     if (items.length === 0){
       Item.insertMany(defaultItems).then(()=>{
         console.log("Default items inserted")
-      }).catch((error)=>{
-        console.log(error)
-      });
+      }).catch((error)=>{console.log(error)});
       // !! if added, redirect back into root route and refresh
       res.redirect("/"); 
     }
@@ -123,7 +121,7 @@ app.post("/delete",(req,res)=>{
   // get id of checked item by its checkbox's value
   const checkedItemID = req.body.checkbox;
   // need to check the list the checkbox is from, and delete from correct list
-
+  // from hidden input
   const listName = req.body.listName;
 
   if (listName === "Today"){
